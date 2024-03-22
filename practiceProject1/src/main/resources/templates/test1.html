@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트1</title>
+</head>
+<body>
+
+    
+    <h2 th:text="${str}">str테테스스스트트트</h2>
+    <h2 th:utext="${str}">str테테스스스트트트</h2>
+    <h2 th:utext="${fruitList}">str테테스스스트트트</h2>
+
+    <hr>
+
+    <h4 th:each="f : ${fruitList}" th:text="${f}"><h2>
+    
+
+</body>
+</html>
