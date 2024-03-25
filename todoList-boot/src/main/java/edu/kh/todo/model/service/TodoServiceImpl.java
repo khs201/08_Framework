@@ -105,4 +105,19 @@ public class TodoServiceImpl implements TodoService {
 		return mapper.changeComplete(todo);
 	}
 	
+	@Override
+	public int getTotalCount() {
+		
+		
+		
+		return mapper.getTotalCount();
+	}
+	
+	// 완료된 할 일 개수 조회
+	@Override
+	public int getCompleteCount() {
+		
+		return mapper.getCompleteCount();
+	}
+	
 }

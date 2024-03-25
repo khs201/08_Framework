@@ -15,29 +15,25 @@
 
 
 
-
-    <form action="/todo/add" method="POST">
-        <h4>할 일 추가</h4>
-
-        <div>
-            제목 : <input type="text" name="todoTitle">
-        </div>
-
-        <div>
-            <textarea name="todoContent" cols="50" rows="5" placeholder="상세 내용"></textarea>
-        </div>
-
-        <button>추가 하기</button>
-
-    </form>
-
+    <!-- form 태그 제출은 무조건 동기식!!!! -->
+    <div>
+      <h4>할 일 추가</h4>
+    
+      <div>
+        제목 : <input type="text" id="todoTitle">
+      </div>
+    
+      <div>
+        <textarea id="todoContent" cols="50" rows="5" placeholder="상세 내용"></textarea>
+      </div>
+    
+      <button id="addBtn">추가 하기</button>
+    
+    </div>
+    
     <hr>
 
-    <h3>
-        전체 Todo 개수 : 0개
-        /
-        완료된 Todo 개수 : 0개
-    </h3>
+
     <!-- 배열 길이 구하는 방법 -->
     <!-- ${#lists.size(todoList) == ${todoList.size()} -->
     <!-- <h3 th:text="|전체 Todo 개수 : ${#lists.size(todoList)}개 / 완료된 Todo 개수 : ${completeCount}개|"> -->
@@ -46,6 +42,7 @@
         전체 Todo 개수 : <span id="totalCount" >0</span>개
         / 
         완료된 Todo 개수 : <span id="completeCount">0</span>개
+        <button id="reloadBtn">새로고침</button>
       </h3>
 
     </h3>

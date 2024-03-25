@@ -104,6 +104,11 @@
 	SET COMPLETE = #{complete}
 	WHERE TODO_NO = #{todoNo}
 	</update>
+	
+	<select id="getTotalCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM TB_TODO
+	</select>
 
 
 </mapper>

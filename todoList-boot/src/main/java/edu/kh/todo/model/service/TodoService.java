@@ -42,5 +42,15 @@ public interface TodoService {
 	 */
 	int changeComplete(Todo todo);
 
+	/** 전체 할 일 개수 조회 서비스 호출
+	 * @return totalCount
+	 */
+	int getTotalCount();
+
+	/** 완료된 할 일 갯수 조회
+	 * @return completeCount
+	 */
+	int getCompleteCount();
+
 
 }
