@@ -1,18 +1,21 @@
 package edu.kh.todo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.kh.todo.model.dto.Todo;
 import edu.kh.todo.model.service.TodoService;
 import lombok.extern.slf4j.Slf4j;
-
 
 /* @ResponseBody
  * - 컨트롤러 메서드의 반환 값을
@@ -28,15 +31,13 @@ import lombok.extern.slf4j.Slf4j;
 
 /* @RequestBody
  * - 비동기 요청(ajax) 시 전달되는 데이터 중
- * body 부분에 포함된 요청 데이터를
- * 알맞은 Java 객체 타입으로 바인딩하는 어노테이션
+ *   body 부분에 포함된 요청 데이터를
+ *   알맞은 Java 객체 타입으로 바인딩하는 어노테이션
  * 
  * (쉬운 설명)
  * - 비동기 요청 시 body에 담긴 값을
- * 	 알맞은 타입으로 변환해서 매개 변수에 저장
+ *   알맞은 타입으로 변환해서 매개 변수에 저장
  * */
-
-
 
 /* [HttpMessageConverter]
  *  Spring에서 비동기 통신 시
@@ -54,9 +55,6 @@ import lombok.extern.slf4j.Slf4j;
  * Spring Boot 모듈에 내장되어 있음
  * (Jackson : 자바에서 JSON 다루는 방법 제공하는 라이브러리)
  */
-
-
-
 
 @Slf4j
 @RequestMapping("ajax")
@@ -121,6 +119,73 @@ public class AjaxController {
 		return result;
 	}
 	
+	
+	@ResponseBody
+	@GetMapping("selectList")
+	public List<Todo> selectList() {
+		
+		List<Todo> todoList = service.selectList();
+		
+		
+		
+		
+		// List(Java 전용 타입)를 반환
+		// -> JS가 인식할 수 없기 때문에 
+		// HTTPMessageConverter가 JSON 형태 [{}, {}, {}]로 변환하여 반환
+		// 									(JSONArray)
+		return todoList;
+		
+		
+		
+	}
+	
+	@ResponseBody // 요청한 곳으로 데이터를 돌려보냄
+	@GetMapping("detail")
+	public Todo selectTodo(
+			@RequestParam("todoNo") int todoNo
+			) {
+		// return 자료형 : Todo
+		// -> HttpMessageConverter가 String(JSON) 형태로 변환해서 반환
+		
+		return service.todoDetail(todoNo);
+	}
+	
+	
+	// Delete 방식 요청 처리 (비동기 요청만 가능!)
+	@DeleteMapping("delete")
+	@ResponseBody
+	public int todoDelete(
+			@RequestBody int todoNo
+			) {
+		return service.deleteTodo(todoNo);
+	}
+	
+	@PutMapping("complete")
+	@ResponseBody
+	public int todoComplete(
+			@RequestBody Todo todo // 요청 body에 담긴 값을 Todo에 저장
+			) {
+		
+		log.debug(todo.toString());
+		
+		
+		
+		int result = service.changeComplete(todo);
+		
+		
+		return result;
+		
+		
+	}
+	
+	@ResponseBody
+	@PutMapping("update")
+	public int todoUpdate(
+			@RequestBody Todo todo
+			) {
+		
+		return service.todoUpdate(todo);
+	}
 	
 	
 	
