@@ -3,7 +3,7 @@
 }
 
 * {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -251,4 +251,35 @@ input[name="memberEmail"] {
 /* id/pw input태그에 초점이 맞춰졌을 때 */
 .id-pw-area>section:first-of-type>input:focus {
  border: 2px solid var(--main-color) !important;
+}
+
+
+
+/* footer */
+footer {
+  width: 100%;
+  height: 200px;
+  background-color: #a3add342;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+footer>p {
+  font-weight: bold;
+  margin: 16px 0;
+}
+
+footer>article>* {
+  font-size: 14px;
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+}
+
+footer span {
+  padding: 0 10px;
 }
