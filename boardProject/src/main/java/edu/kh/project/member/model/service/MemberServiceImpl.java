@@ -12,7 +12,7 @@ import edu.kh.project.member.model.mapper.MemberMapper;
 			   // - 중간에 예외(RuntimeException)이 발생하면 rollback
 			   // (AOP 기반 기술)
 @Service // 비즈니스 로직 처리 역할 + bean으로 등록 (스프링이 알아서 객체 만들어줌) 
-public class MemberServiceImpl implements memberService{
+public class MemberServiceImpl implements MemberService{
 
 	@Autowired // 등록된 bean 중에서 같은 타입 또는 상속관계인 bean을
 			   // 자동으로 의존성 주입(DI)
@@ -109,5 +109,25 @@ public class MemberServiceImpl implements memberService{
 			// 	  (매퍼 메서드 호출 시 SQL에 사용할 파라미터는 1개만 전달 가능)
 			return mapper.signup(inputMember);
 		}
+		
+		@Override
+		public int checkEmail(String memberEmail) {
+			
+			return mapper.checkEmail(memberEmail);
+		}
+		
+		
+		@Override
+		public int checkNickname(String memberNickname) {
+			
+			return mapper.checkNickname(memberNickname);
+		}
+		
+		@Override
+		public int checkTel(String memberTel) {
+			
+			return mapper.checkTel(memberTel);
+		}
+		
 	
 }

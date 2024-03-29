@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
-import edu.kh.project.member.model.service.memberService;
+import edu.kh.project.member.model.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 
 	@Autowired // 의존성 주입(DI)
-	private memberService service;
+	private MemberService service;
 	
 	
 	/*
@@ -190,10 +191,44 @@ public class MemberController {
 	}
 	
 	
+	/** 이메일 중복 검사
+	 * @param memberEmail
+	 * @return 중복 1, 아니면 0
+	 */
+	@ResponseBody // 응답 본문 (요청한 fetch()로 돌려보냄
+	@GetMapping("checkEmail")
+	public int checkEmail(
+			@RequestParam("memberEmail") String memberEmail
+			) {
+		
+		return service.checkEmail(memberEmail);
+	}
+	
+	@ResponseBody
+	@GetMapping("checkNickname")
+	public int checkNickname(
+			@RequestParam("memberNickname") String memberNickname
+			) {
+
+	
 	
 
 	
-
+		return service.checkNickname(memberNickname);
+	}
+	
+	@ResponseBody
+	@GetMapping("checkTel")
+	public int checkTel(
+			@RequestParam("memberTel") String memberTel
+			) {
+		
+		return service.checkTel(memberTel);
+	}
+	
+	
+	
+	
 }
 
 /* Cookie란?
