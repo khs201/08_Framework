@@ -1,14 +1,18 @@
 package edu.kh.project.email.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.kh.project.email.model.service.EmailService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @SessionAttributes({"authKey"}) // model 값 session으로 변경
@@ -23,8 +27,8 @@ public class EmailController {
 	
 	@ResponseBody
 	@PostMapping("signup")
-	public int signup(@RequestBody String email,
-			Model model
+	public int signup(@RequestBody String email
+			// HttpSession session
 			) {
 		
 		String authKey = service.sendEmail("signup", email);
@@ -35,7 +39,8 @@ public class EmailController {
 			
 			// 이메일로 전달한 인증번호를 Session에 올려둠
 			// 클래스 상단에 @SessionAttributes 작성
-			model.addAttribute("authKey", authKey); // request -> session
+			// ** 오류나서 model 사용 안하고 HttpSession 사용함 **
+			// session.setAttribute("authKey", authKey); // request -> session
 			
 			return 1;
 		}
@@ -44,10 +49,32 @@ public class EmailController {
 		return 0;
 	}
 	
+	/** 입력된 인증번호와 Session에 있는 인증 번호를 비교
+	 * @param inputAuthKey
+	 * @return 
+	 */
+	@ResponseBody
+	@PostMapping("checkAuthKey")
+	public int checkAuthKey(
+			// 전달받은 JSON을 Map으로 변경
+			@RequestBody Map<String, Object> map
+			) {
+		
+		// 입력 받은 이메일, 인증 번호가 DB에 있는지 조회
+		// 이메일 있고, 인증 번호 일치 == 1
+		// 아니면 0
+		return service.checkAuthKey(map);
+	} 
+	
+	
+	
+	
 	
 }
 
-
+// @SessionAttribute("Key")
+// - Session에 세팅된 값 중 Key가 일치하는 값을 얻어와
+// 매개 변수에 대입
 
 
 /* @Autowired를 이용한 의존성 주입 방법은 3가지가 존재

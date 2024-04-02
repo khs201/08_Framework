@@ -1,10 +1,11 @@
 package edu.kh.project.member.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -224,6 +225,44 @@ public class MemberController {
 			) {
 		
 		return service.checkTel(memberTel);
+	}
+	
+	/**
+	 * @param memberEmail
+	 * @param model
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("quickLogin")
+	public String quickLogin(
+			@RequestParam("memberEmail") String memberEmail,
+			Model model, RedirectAttributes ra
+			) {
+		
+		Member loginMember = service.quickLogin(memberEmail);
+		
+		if (loginMember == null) {
+			ra.addFlashAttribute("message", "해당 이메일 회원이 존재하지 않습니다.");
+		} else {
+			model.addAttribute("loginMember", loginMember);
+		}
+		
+		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@GetMapping("selectMemberList")
+	public List<Member> selectMemberList (
+			RedirectAttributes ra
+			) {
+
+				List<Member> memberList = service.selectMemberList();
+
+				// List(Java 전용 타입)를 반환
+				// -> JS가 인식할 수 없기 때문에
+				// HTTPMessageConverter가 JSON 형태 [{}, {}, {}]로 변환하여 반환
+				// (JSONArray)
+				return memberList;
 	}
 	
 	

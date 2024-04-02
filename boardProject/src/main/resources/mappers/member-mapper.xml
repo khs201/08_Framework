@@ -75,5 +75,13 @@ VALUES(SEQ_MEMBER_NO.NEXTVAL,
 	AND MEMBER_TEL = #{memberTel}
 	</select>
 
+<select id="selectMemberList" resultType="Member">
+	SELECT MEMBER_NO ,
+	MEMBER_EMAIL , MEMBER_NICKNAME , MEMBER_DEL_FL
+	FROM "MEMBER" 
+</select>
+	
+
+
 
 </mapper>
