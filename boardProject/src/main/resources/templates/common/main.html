@@ -34,6 +34,42 @@
 
         <hr>
 
+        <hr>
+
+        <h3>특정 회원 비밀번호 초기화(Ajax)</h3>
+
+        <div>
+          회원번호 :
+          <input type="text" id="resetMemberNo">
+
+          <button id="resetPw">비밀번호 초기화(1234)</button>
+
+        </div>
+
+        <hr>
+
+        <h3>특정 회원 탈퇴 복구 (ajax)</h3>
+
+        <div>
+          회원번호 :
+          <input type="text" id="resetRegNo">
+
+          <button id="resetReg">회원 탈퇴 취소</button>
+
+        </div>
+
+        <hr>
+
+        <h3>회원 삭제 (ajax)</h3>
+
+        <div>
+          회원번호 :
+          <input type="text" id="delMem">
+
+          <button id="delMemBtn">회원 삭제(탈퇴 아님)</button>
+
+        </div>
+
         <h3>
           회원 목록 조회(비동기)
           <button id="selectMemberList">조회</button>
@@ -120,7 +156,7 @@
             <div class="my-info" th:object="${session.loginMember}">
 
               <div>
-                <a href="#" id="nickname" th:text="*{memberNickname}">닉네임</a>
+                <a href="/myPage/info" id="nickname" th:text="*{memberNickname}">닉네임</a>
 
                 <a href="/member/logout" id="logoutBtn">로그아웃</a>
               </div>

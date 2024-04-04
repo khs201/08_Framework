@@ -1,72 +1,58 @@
-:root {
-  --main-color: #455ba8;
+:root{
+  --main-color : #455ba8;
 }
 
 
-* {
+*{
   /* border: 1px solid black; */
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-body {
+body{
   display: flex;
-  flex-direction: column;
-  /* 중심축 방향 세로 */
-  align-items: center;
-  /* 교차축 방향 가운데 정렬 */
-  min-height: 100vh;
-  /* 최소 높이를 화면 비율 100% */
+  flex-direction: column; /* 중심축 방향 세로 */
+  align-items: center;    /* 교차축 방향 가운데 정렬 */
+  min-height: 100vh;      /* 최소 높이를 화면 비율 100% */ 
 }
 
-main {
+main{
   width: 1140px;
-  flex-grow: 1;
-  /* 중심축 방향으로 팽창 */
+  flex-grow: 1;       /* 중심축 방향으로 팽창 */
   min-height: 500px;
 }
 
-/* 화면 너비가 1140px이 되기 전에 적용할 CSS */
-/* == 1140px 이하일 때 적용 */
+/* 화면 너비가 1140px이 되기 전에 적용할 css */
+/*  == 1140px 이하일 때 적용 */
 @media (max-width : 1140px) {
-  main{
-    width: 100%;
-  }
+  main{ width: 100vw; }
 }
 
 
+
 /* a태그 스타일 지정 */
-a {
+a{
   text-decoration: none;
-  color: black;
+  color : black;
 }
 
 
 
 /* *********** header *********** */
-header {
+header{
   height: 200px;
   display: flex;
-  flex-direction: row;
-  /* 중심축 가로 방향(기본값) */
+  flex-direction: row; /* 중심축 가로 방향(기본값) */
 }
 
-header>section:first-child {
-  width: 15%;
-}
-
-header>section:nth-child(2) {
-  width: 70%;
-}
-
-header>section:last-child {
-  width: 15%;
-}
+header > section:first-child{ width: 15%; }
+header > section:nth-child(2){ width: 70%; }
+header > section:last-child{ width: 15%; }
 
 
 /* 로고 */
-header>section:first-child {
+header > section:first-child{
 
   /* 정가운데 배치 */
   display: flex;
@@ -74,7 +60,7 @@ header>section:first-child {
   align-items: center;
 }
 
-#homeLogo {
+#homeLogo{
   /* 지정된 너비에 맞게 높이 자동 지정 */
   width: 120px;
   height: auto;
@@ -82,31 +68,27 @@ header>section:first-child {
 
 
 /* 검색 영역 */
-header>section:nth-child(2) {
+header > section:nth-child(2){
   /* 정가운데 배치 */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.search-area {
-  width: 500px;
-}
+.search-area{ width : 500px; }
 
 /* 검색창 테두리 */
-.search-area fieldset {
+.search-area fieldset{
   border: 2px solid var(--main-color);
-  padding: 2px;
+  padding: 2px; 
   border-radius: 5px;
   display: flex;
 }
 
 /* 검색 창(input) */
-#query {
-  border: none;
-  /* 평상 시 보이는 테두리 없앰 */
-  outline: none;
-  /* 클릭 시 보이는 테두리 없앰*/
+#query{
+  border: none;  /* 평상 시 보이는 테두리 없앰 */
+  outline: none; /* 클릭 시 보이는 테두리 없앰*/
   font-size: 18px;
   font-weight: bold;
   padding: 10px;
@@ -114,14 +96,13 @@ header>section:nth-child(2) {
 }
 
 /* 검색 버튼 */
-#searchBtn {
+#searchBtn{
   width: 8%;
   cursor: pointer;
   border: none;
 
-  font-size: 1.2em;
-  /* 부모 폰트 크기의 1.2배 */
-  color: var(--main-color);
+  font-size: 1.2em;  /* 부모 폰트 크기의 1.2배 */
+  color : var(--main-color);
   background-color: white;
 }
 
@@ -129,105 +110,94 @@ header>section:nth-child(2) {
 
 
 /* *************** nav *************** */
-nav {
+nav{
   height: 50px;
   background-color: white;
   border-bottom: 2px solid black;
 
-  position: sticky;
-  /* 화면 밖으로 벗어났을 때 지정된 위치 붙음 */
-  top: 0;
-  /* 붙을 위치(고정될 위치) 지정 */
-  z-index: 1000;
+  position : sticky; /* 화면 밖으로 벗어났을 때 지정된 위치 붙음 */
+  top : 0;           /* 붙을 위치(고정될 위치) 지정 */
+  z-index: 1000;     
 }
 
-nav>ul {
+nav > ul{
   display: flex;
-  list-style: none;
-  /* li 태그 앞에 기호 삭제 */
+  list-style: none; /* li 태그 앞에 기호 삭제 */
   height: 100%;
 }
 
 nav li {
-  flex: 0 1 150px;
-  /* grow  shrink  basis */
+  flex : 0     1     150px;
+    /* grow  shrink  basis */
 }
 
-nav a {
-  text-decoration: none;
-  /* 밑줄 제거 */
+nav a{
+  text-decoration: none; /* 밑줄 제거 */
   color: black;
   font-size: 18px;
   font-weight: bold;
-  padding: 11px 0;
-  /* 위아래 10px, 좌우 0px 여백 */
-
+  padding: 11px 0;      /* 위아래 10px, 좌우 0px 여백 */
+  
   display: block;
-  text-align: center;
-  /* 글자(inline) 가운데 정렬 */
+  text-align: center;   /* 글자(inline) 가운데 정렬 */
 
   border-radius: 5px;
-  transition-duration: 0.1s;
-  /* css가 0.1초 동안의 시간을 가지고 변함 */
-
+  transition-duration: 0.1s; /* css가 0.1초 동안의 시간을 가지고 변함 */
+  
   height: 100%;
 }
 
-nav a:hover {
+nav a:hover{
   color: white;
   background-color: var(--main-color);
 }
 
 
 /* *************** 메인 페이지 content *************** */
-.content {
+.content{
   min-height: 800px;
   display: flex;
-  align-items: stretch;
-  /* 교차축 방향으로 늘어남(기본값)
+  align-items: stretch; /* 교차축 방향으로 늘어남(기본값)
                         -> 자식 요소의 높이를 부모랑 똑같이 함 */
 }
 
-.content-1 {
+.content-1{ 
   width: 70%;
   padding: 20px;
 }
 
-.content-2 {
+.content-2{
   width: 30%;
 }
 
 /* 로그인 영역 */
-#loginForm {
+#loginForm{
   height: 150px;
   padding: 10px;
   margin-top: 10px;
 
   display: flex;
-  flex-direction: column;
-  /* 중심축을 컬럼(세로)로 지정 */
-  justify-content: center;
-  /* 중심축(세로) 가운데 정렬 */
+  flex-direction: column;  /* 중심축을 컬럼(세로)로 지정 */
+  justify-content: center; /* 중심축(세로) 가운데 정렬 */
 }
 
 
 /* id/pw 입력 영역 */
-.id-pw-area {
+.id-pw-area{
   border: 1px solid #ccc;
   display: flex;
-  flex-basis: 60%;
-  /* 중심축(세로) 방향 60% (== height:60%) */
+  flex-basis: 60%; /* 중심축(세로) 방향 60% (== height:60%) */
 }
 
 
-.id-pw-area>section:first-of-type {
+.id-pw-area > section:first-of-type{
   width: 75%;
   display: flex;
   flex-direction: column;
 }
 
 /* id/pw input태그 */
-.id-pw-area>section:first-of-type>input {
+.id-pw-area > section:first-of-type > input{
   border: none;
   outline: none;
   height: 50%;
@@ -236,28 +206,28 @@ nav a:hover {
 }
 
 
-input[name="memberEmail"] {
+input[name="memberEmail"]{
   /* id/pw 사이 선 */
-  border-bottom: 1px solid #ccc !important;
+  border-bottom : 1px solid #ccc !important;
 }
 
 /* id/pw input태그에 초점이 맞춰졌을 때 */
-.id-pw-area>section:first-of-type>input:focus {
-  border: 2px solid var(--main-color) !important;
+.id-pw-area > section:first-of-type > input:focus{
+  border : 2px solid var(--main-color) !important;
 }
 
 
 
 
 /* 로그인 버튼 영역 */
-.id-pw-area>section:last-of-type {
+.id-pw-area > section:last-of-type{
   width: 25%;
   display: flex;
   justify-content: center;
 }
 
 /* 로그인 버튼 */
-.id-pw-area>section:last-of-type>button {
+.id-pw-area > section:last-of-type > button{
   width: 100%;
   background-color: white;
   cursor: pointer;
@@ -265,35 +235,35 @@ input[name="memberEmail"] {
   font-weight: bold;
 }
 
-.id-pw-area>section:last-of-type>button:hover {
-  color: white;
+.id-pw-area > section:last-of-type > button:hover{
+  color : white;
   background-color: var(--main-color);
 }
 
-/* 회원가입 / 찾기 영역 */
-.signup-find-area {
+
+/* 회원가입 / 찾기 */
+.signup-find-area{
   margin-top: 10px;
   padding-left: 5px;
 }
 
-.signup-find-area>a {
+.signup-find-area > a{
   font-size: 14px;
-
 }
 
-.signup-find-area>span {
+.signup-find-area > span{
   padding: 0 10px;
 }
 
 /* 아이디 저장 */
-#loginForm>label {
+#loginForm > label{
   margin-top: 5px;
   font-size: 14px;
   display: flex;
   padding: 5px 0;
 }
 
-input[name="saveId"] {
+input[name="saveId"]{
   margin-right: 5px;
 }
 
@@ -330,7 +300,7 @@ footer span {
 
 
 /* ************** 로그인 되었을 때 ************* */
-.login-area {
+.login-area{
   height: 120px;
   padding: 30px 10px;
   margin: 10px 0;
@@ -341,14 +311,14 @@ footer span {
 }
 
 /* 프로필 이미지 */
-#memberProfile {
+#memberProfile{
   width: 64px;
   height: 64px;
   border-radius: 50%;
 }
 
 /* 프로필 이미지를 감싸고 있는 a태그 */
-.login-area>a {
+.login-area > a{
   display: block;
   width: 70px;
   height: 70px;
@@ -357,29 +327,27 @@ footer span {
 }
 
 /* 닉네임, 이메일, 로그아웃 버튼 영역 */
-.my-info {
+.my-info{
   width: 100%;
   height: 100%;
   margin-left: 20px;
 }
 
-.my-info>div {
+.my-info > div{
   display: flex;
-  justify-content: space-between;
-  /* 양 끝으로 붙임 */
+  justify-content: space-between; /* 양 끝으로 붙임 */
 }
 
 /* 닉네임 */
-#nickname {
+#nickname{
   font-size: 20px;
   font-weight: bold;
-  letter-spacing: -3px;
-  /* 자간(글자 간의 간격) */
+  letter-spacing: -3px;  /* 자간(글자 간의 간격) */
 }
 
 /* 로그아웃 버튼 */
-#logoutBtn {
-  color: grey;
+#logoutBtn{
+  color : grey;
   font-size: 14px;
   font-weight: bold;
   border: 2px solid grey;
@@ -387,101 +355,96 @@ footer span {
   border-radius: 10px;
 }
 
-#logoutBtn:hover {
+#logoutBtn:hover{
   color: white;
   background-color: grey;
 }
 
-#logoutBtn:active {
-  transform: scale(0.8);
-  /* 요소 크기를 0.8배로 변경 */
+#logoutBtn:active{
+  transform: scale(0.8); /* 요소 크기를 0.8배로 변경 */
 }
 
 /* 이메일 */
-.my-info>p {
+.my-info > p{
   margin: 0;
   color: grey;
 }
 
 
-/* 헤더 오른쪽 상단 메뉴 */
-header {
-  /* 기준 */
-  position: relative;
 
-
+/* ********** 헤더 오른쪽 상단 메뉴 ************ */
+header{
+  position: relative; /* 기준 */
 }
 
 /* 헤더 메뉴를 감싸는 요소 */
-.header-top-menu {
-
+.header-top-menu{
   position: absolute;
   right: 10px;
   top: 5px;
 }
 
-.header-top-menu * {
+.header-top-menu *{
   font-size: 15px;
   font-weight: bold;
 }
 
-
 /* 헤더 메뉴 체크 박스 */
-#headerMenuToggle {
-  display: none;
-}
+#headerMenuToggle{ display: none; } 
 
 /* 닉네임 부분 */
-label[for="headerMenuToggle"] {
+label[for="headerMenuToggle"]{
   cursor: pointer;
   user-select: none;
 }
 
-label[for="headerMenuToggle"]:hover {
-  /* 밑줄 */
-  text-decoration: underline;
+label[for="headerMenuToggle"]:hover{
+  text-decoration: underline; /* 밑줄 */
 }
 
 /* 체크 박스 다음 형제 요소 */
-/* 동위 선택자 */
-#headerMenuToggle+div {
+#headerMenuToggle + div{
   display: none;
-
 }
 
-/* 체크된 #headeMenuToggle 체크 박스 다음 형제 요소 */
-#headerMenuToggle:checked+div {
+/* 체크된  #headerMenuToggle 체크 박스 다음 형제 요소*/
+#headerMenuToggle:checked + div{
   display: block;
-
-
 }
+
 
 /* 닉네임 클릭 시 보이는 메뉴 */
-.header-menu {
+.header-menu{
   position: absolute;
   width: 100px;
   height: 80px;
   right: 0;
   margin-top: 5px;
   border: 1px solid black;
-
 }
 
-.header-menu>a {
+.header-menu > a{
   display: flex;
   height: 50%;
   justify-content: center;
   align-items: center;
 }
 
-.header-menu>a:first-of-type {
+.header-menu > a:first-of-type{
   border-bottom: 1px solid #ccc;
 }
 
-.header-menu>a:hover {
+.header-menu > a:hover{
   color: white;
   background-color: var(--main-color);
 }
 
 
 
+.content-1 hr{
+  padding: 10px 0;
+}
+
+.content-1 hr{
+  margin: 20px 0;
+}

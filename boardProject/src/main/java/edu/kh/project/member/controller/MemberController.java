@@ -262,6 +262,9 @@ public class MemberController {
 				// -> JS가 인식할 수 없기 때문에
 				// HTTPMessageConverter가 JSON 형태 [{}, {}, {}]로 변환하여 반환
 				// (JSONArray)
+				
+				// (java)List -> (Spring)HttpMessageConverter가 JSON Array(문자열)로 
+				// 변경-> response.json() -> [{}, {}, {}] JS 객체 배열
 				return memberList;
 	}
 	
