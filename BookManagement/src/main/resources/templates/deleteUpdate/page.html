@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>책 검색, 수정, 삭제</title>
+</head>
+
+<body>
+
+  <h1>책 검색, 수정, 삭제</h1>
+
+  <form action="detailSearch" method="GET" id="searchFrm">
+    책 제목 : <input type="text" name="searchBookName" id="searchBookName" placeholder="책 제목 입력해라"> <button>검색</button>
+  </form>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <hr>
+
+
+  <table border="1" style="border-collapse: collapse;">
+
+    <thead>
+      <th>책 번호</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>가격</th>
+      <th>등록일</th>
+    </thead>
+
+
+    <tbody>
+      <tr th:each="book : ${detailList}" th:object="${book}">
+        <td th:text="*{bookNo}">할 일 번호</td>
+
+        <td>
+          <td th:text="*{bookTitle}">완료 여부(Y/N)</td>
+        </td>
+        <td th:text="*{bookWriter}">완료 여부(Y/N)</td>
+        <td th:text="*{bookPrice}">완료 여부(Y/N)</td>
+        <td th:text="*{regDate}">등록일</td>
+      </tr>
+
+    </tbody>
+
+    <tbody>
+      <tr th:each="book : ${detailList}" th:object="${book}">
+        <td th:text="*{bookNo}">할 일 번호</td>
+
+        <td>
+          <td th:text="*{bookTitle}">완료 여부(Y/N)</td>
+        </td>
+        <td th:text="*{bookWriter}">완료 여부(Y/N)</td>
+        <td th:text="*{bookPrice}">완료 여부(Y/N)</td>
+        <td th:text="*{regDate}">등록일</td>
+      </tr>
+
+    </tbody>
+
+
+
+
+  </table>
+
+  <table border="1">
+    <tr>
+      <th>책 제목</th>
+      <th>저자</th>
+      <th>출판사</th>
+    </tr>
+    <tr th:each="book : ${detailList}">
+      <td>${book.title}</td>
+      <td>${book.author}</td> 
+      <td>${book.publisher}</td> 
+    </tr>
+  </table>
+  
+
+
+
+
+
+  <script src="/js/deleteUpdate.js"></script>
+</body>
+
+</html>
