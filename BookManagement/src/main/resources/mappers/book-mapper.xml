@@ -23,7 +23,20 @@ SELECT
 	TO_CHAR(REG_DATE, 'YYYY-MM-DD') REG_DATE
 FROM
 	BOOK
-WHERE BOOK_TITLE = #{bookTitle}	
+WHERE BOOK_TITLE LIKE '%${bookTitle}%'
+
+
 </select>
+
+<insert id="addBook">
+INSERT
+	INTO
+	BOOK 
+VALUES(SEQ_BOOK_NO.NEXTVAL,
+#{bookTitle},
+#{bookWriter},
+${bookPrice},
+DEFAULT )
+</insert>
 
 </mapper>

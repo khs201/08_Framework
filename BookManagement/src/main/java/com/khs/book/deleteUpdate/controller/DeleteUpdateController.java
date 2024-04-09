@@ -28,8 +28,9 @@ public class DeleteUpdateController {
 		return "deleteUpdate/page";
 	}
 	
+	@ResponseBody
 	@GetMapping("detailSearch")
-	public String detailSearch (
+	public List<Book> detailSearch (
 			@RequestParam("searchBookName") String bookTitle,
 			RedirectAttributes ra
 			
@@ -38,9 +39,9 @@ public class DeleteUpdateController {
 		List<Book> detailList = service.detailSearch(bookTitle);
 		
 		
-		ra.addAttribute("detailList", detailList);
+		ra.addFlashAttribute("detailList", detailList);
 		
-		return "redirect:page";
+		return detailList;
 	}
 	
 	

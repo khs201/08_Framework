@@ -17,4 +17,13 @@ public interface MainService {
 	 */
 	List<Book> detailSearch(String bookTitle);
 
+	/** 책 추가
+	 * @param bookPrice
+	 * @param bookWriter
+	 * @param bookTitle
+	 * @return 
+	 */
+
+	int addBook(int bookPrice, String bookWriter, String bookTitle);
+
 }

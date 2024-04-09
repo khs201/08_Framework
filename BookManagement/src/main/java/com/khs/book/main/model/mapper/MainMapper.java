@@ -13,4 +13,8 @@ public interface MainMapper {
 
 	List<Book> detailSearch(String bookTitle);
 
+	int addBook(Book book);
+
+	
+
 }

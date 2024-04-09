@@ -25,10 +25,24 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public List<Book> detailSearch(String bookTitle) {
-		
-		
-		
+
 		return mapper.detailSearch(bookTitle);
 	}
+
+	@Override
+	public int addBook(int bookPrice, String bookWriter, String bookTitle) {
+
+		Book book = new Book();
+		
+		book.setBookPrice(bookPrice);
+		book.setBookWriter(bookWriter);
+		book.setBookTitle(bookTitle);
+		
+		return mapper.addBook(book);
+		
+	}
+	
+	
+	
 
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메인 페이지</title>
+</head>
+<body>
+  
+  <h1>고객 추가</h1>
+
+  <form action="/add" method="post">
+    이름 : <input type="text" name="addName" id="addName"><br>
+    전화번호 : <input type="number" name="addPhone" id="addPhone"><br>
+    주소 : <input type="text" name="addAddress" id="addAddress"><br>
+    <button>추가</button>
+  </form>
+
+</body>
+</html>
