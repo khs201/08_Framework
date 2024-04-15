@@ -114,29 +114,39 @@ AND BOARD_CODE = #{boardCode}
 
 <!-- 게시글 상세 조회 -->
 	<select id="selectOne" resultMap="board_rm">
-		SELECT BOARD_NO, BOARD_TITLE,
-		BOARD_CONTENT, BOARD_CODE, READ_COUNT,
-		MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG,
+	SELECT BOARD_NO, BOARD_TITLE,
+	BOARD_CONTENT, BOARD_CODE, READ_COUNT,
+	MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG,
 
-		TO_CHAR(BOARD_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') BOARD_WRITE_DATE,
-		TO_CHAR(BOARD_UPDATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')
-		BOARD_UPDATE_DATE,
+	TO_CHAR(BOARD_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') BOARD_WRITE_DATE,
+	TO_CHAR(BOARD_UPDATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')
+	BOARD_UPDATE_DATE,
 
-		(SELECT COUNT(*)
-		FROM "BOARD_LIKE"
-		WHERE BOARD_NO = #{boardNo}) LIKE_COUNT,
+	(SELECT COUNT(*)
+	FROM "BOARD_LIKE"
+	WHERE BOARD_NO = #{boardNo}) LIKE_COUNT,
 
-		(SELECT IMG_PATH || IMG_RENAME
-		FROM "BOARD_IMG"
-		WHERE BOARD_NO = #{boardNo}
-		AND IMG_ORDER = 0) THUMBNAIL
+	(SELECT IMG_PATH || IMG_RENAME
+	FROM "BOARD_IMG"
+	WHERE BOARD_NO = #{boardNo}
+	AND IMG_ORDER = 0) THUMBNAIL,
+	
+	(
+	SELECT
+	COUNT(*)
+	FROM
+	"BOARD_LIKE"
+	WHERE
+	MEMBER_NO = #{memberNo}
+	AND BOARD_NO = #{boardNo}
+	) LIKE_CHECK
 
-		FROM "BOARD"
-		JOIN "MEMBER" USING(MEMBER_NO)
-		WHERE BOARD_DEL_FL = 'N'
-		AND
-		BOARD_CODE = #{boardCode}
-		AND BOARD_NO = #{boardNo}
+	FROM "BOARD"
+	JOIN "MEMBER" USING(MEMBER_NO)
+	WHERE BOARD_DEL_FL = 'N'
+	AND
+	BOARD_CODE = #{boardCode}
+	AND BOARD_NO = #{boardNo}
 	</select>
 
 
@@ -165,6 +175,39 @@ AND BOARD_CODE = #{boardCode}
 		CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
 		ORDER SIBLINGS BY COMMENT_NO
 	
+	</select>
+	
+	<!-- 좋아요 해제 -->
+	<delete id="deleteBoardLike">
+	DELETE FROM "BOARD_LIKE"
+	WHERE MEMBER_NO = #{memberNo}	
+	AND BOARD_NO = #{boardNo}
+	</delete>
+
+	<!-- 좋아요 체크 -->
+	<insert id="insertBoardLike">
+	INSERT INTO "BOARD_LIKE" (MEMBER_NO, BOARD_NO)
+	VALUES (#{memberNo}, #{boardNo})
+	</insert>
+	
+	<!-- 게시글 좋아요 수 조회 -->
+	<select id="selectLikeCount" resultType="_int">
+	SELECT COUNT(*) FROM "BOARD_LIKE"
+	WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 조회수 1 증가 -->
+	<update id="updateReadCount">
+	UPDATE "BOARD" SET
+	READ_COUNT = READ_COUNT + 1
+	WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 조회 수 조회 -->
+	<select id="selectReadCount" resultType = "_int">
+	SELECT READ_COUNT
+	FROM "BOARD"
+	WHERE BOARD_NO = #{boardNo}
 	</select>
 
 
