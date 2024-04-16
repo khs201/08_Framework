@@ -64,3 +64,21 @@ boardLike.addEventListener("click", e => {
 
 
 });
+
+// 게시글 삭제
+const deleteBtn = document.querySelector("#deleteBtn");
+deleteBtn.addEventListener("click", e => {
+
+  const boardCode = location.pathname.split("/")[2];
+
+  // console.log(`/editBoard/${boardCode}/${boardNo}/delete`);
+
+  if(confirm("삭제할꺼임?")){
+
+  location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
+} else {
+  alert("취소됨");
+}
+
+
+});
