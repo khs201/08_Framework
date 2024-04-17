@@ -1,6 +1,9 @@
 package com.khs.fileTest.controller;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,11 +26,15 @@ public class uploadController {
 	@PostMapping("test1")
 	public String uploadFile1(
 			@RequestParam("uploadFile1") MultipartFile uploadFile,
-			RedirectAttributes ra
-			) {
+			RedirectAttributes ra,
+			Model model
+			) throws IllegalStateException, IOException {
 		
-		String path = service.uploadFile1(uploadFile);
+		String imageUrl = service.uploadFile1(uploadFile);
 		
+		// model.addAttribute("imageUrl", imageUrl);
+		
+		ra.addFlashAttribute("imageUrl", imageUrl);
 		
 		
 		return "redirect:/";

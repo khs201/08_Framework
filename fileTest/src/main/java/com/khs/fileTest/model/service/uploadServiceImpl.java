@@ -28,12 +28,21 @@ public class uploadServiceImpl implements uploadService{
 		
 		// 업로드한 파일이 있을 경우
 		uploadFile.transferTo(new File("C:\\uploadFiles\\test\\" + uploadFile.getOriginalFilename()));
+		
+		
+		// 이미지 화면에 띄우기
+		String fileName = uploadFile.getOriginalFilename();
+		String tempDir = System.getProperty("C:\\uploadFiles\\temp");
+		File tempFile = new File(tempDir, fileName);
+		uploadFile.transferTo(tempFile);
+		
+		String imageUrl = "/uploads/" + fileName;
 
 		// 웹에서 해당 파일에 접근할 수 있는 경로를 반환
 
 		// 서버 : C:\\uploadFiles\\test\\a.jpg
 		// 웹 접근 주소 : /mypage/file/a.jpg
-		return "/myPage/file/" + uploadFile.getOriginalFilename();
+		return imageUrl;
 	}
 	
 }
