@@ -10,13 +10,15 @@
   <h1>파일 업/다운로드 테스트 용</h1>
 
   
-  <img src="#" alt="업로드한 이미지">
+  <img th:src="@{${imageUrl}}" alt="업로드한 이미지">
 
 
   <form action="/upload/test1" method="post" name="uploadFrm1" enctype="multipart/form-data">
     <input type="file" name="uploadFile1">
     <button>제출</button>
   </form>
+
+  <a href="/signup/signupPage">회원 가입 해보기</a>
 
 
 

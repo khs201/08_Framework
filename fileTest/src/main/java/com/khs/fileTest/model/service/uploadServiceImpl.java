@@ -39,9 +39,12 @@ public class uploadServiceImpl implements uploadService{
 		String imageUrl = "/uploads/" + fileName;
 
 		// 웹에서 해당 파일에 접근할 수 있는 경로를 반환
-
+		
 		// 서버 : C:\\uploadFiles\\test\\a.jpg
 		// 웹 접근 주소 : /mypage/file/a.jpg
+		// /images/board/**
+		// /uploads/flower2.jpg
+		
 		return imageUrl;
 	}
 	
