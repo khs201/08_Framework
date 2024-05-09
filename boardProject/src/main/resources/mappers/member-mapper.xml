@@ -29,6 +29,7 @@ FROM
 WHERE 
 MEMBER_EMAIL = #{memberEmail}
 AND "MEMBER".MEMBER_DEL_FL = 'N'
+
 </select>
 
 <!-- 회원 가입 -->

@@ -163,6 +163,9 @@ public class BoardServiceImpl implements BoardService {
 			int offset = (cp - 1) * limit;
 			RowBounds rowBounds = new RowBounds(offset, limit); 
 			
+			// offset : 건너뛰는 수
+			// limit : 건너뛴 다음 조회할 행의 개수
+			
 			/* Mapper 메서드 호출 시
 			 * - 첫 번째 매개 변수 -> SQL에 전달할 파라미터
 			 * - 두 번째 매개 변수 -> RowBounds 객체 전달 
